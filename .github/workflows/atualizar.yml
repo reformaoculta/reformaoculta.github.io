@@ -1,13 +1,19 @@
-# Atualiza a lista de vídeos do canal todo dia e quando houver alteração no app.
+# Atualiza a lista de vídeos do canal e avisa quem ligou os avisos quando sai vídeo novo.
+# - Toda hora: confere o feed público do canal (leve) para pegar vídeo novo rápido.
+# - 06:15 e 18:15 (Brasília) ou quando rodado à mão: baixa a lista completa (títulos, visualizações).
 name: Atualizar vídeos do canal
 
 on:
   schedule:
-    - cron: "15 9,21 * * *"   # 06:15 e 18:15 no horário de Brasília
+    - cron: "15 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: atualizar
+  cancel-in-progress: false
 
 jobs:
   atualizar:
@@ -17,19 +23,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Instalar yt-dlp
-        run: pip install -U yt-dlp
+      - name: Guardar a lista de antes
+        run: |
+          python -c "import json; d=json.load(open('dados/videos.json',encoding='utf-8')); print('\n'.join(v['id'] for v in d['videos']+d['shorts']))" > /tmp/ids_antes.txt
+          cp dados/videos.json /tmp/antes.json
       - name: Baixar listas do canal
         env:
           CANAL: https://www.youtube.com/channel/UCXF-4pobMGoKSlgOB3P28Zw
         run: |
           mkdir -p .listas
-          for t in videos shorts; do
-            yt-dlp --extractor-args "youtube:lang=pt" --flat-playlist --dump-single-json "$CANAL/$t" > .listas/$t.json || rm -f .listas/$t.json
-            yt-dlp --extractor-args "youtube:lang=en" --flat-playlist --dump-single-json "$CANAL/$t" > .listas/${t}_en.json || rm -f .listas/${t}_en.json
-          done
-          # arquivo vazio = falhou: apaga para o gerador usar o plano B (feed público)
-          find .listas -name "*.json" -size -100c -delete
+          HORA=$(date -u +%H)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$HORA" = "09" ] || [ "$HORA" = "21" ]; then
+            pip install -q -U yt-dlp
+            for t in videos shorts; do
+              yt-dlp --extractor-args "youtube:lang=pt" --flat-playlist --dump-single-json "$CANAL/$t" > .listas/$t.json || rm -f .listas/$t.json
+              yt-dlp --extractor-args "youtube:lang=en" --flat-playlist --dump-single-json "$CANAL/$t" > .listas/${t}_en.json || rm -f .listas/${t}_en.json
+            done
+            # arquivo vazio = falhou: apaga para o gerador usar o plano B (feed público)
+            find .listas -name "*.json" -size -100c -delete
+          fi
           curl -sL "https://www.youtube.com/feeds/videos.xml?channel_id=UCXF-4pobMGoKSlgOB3P28Zw" -o .listas/feed.xml
       - name: Gerar catálogo
         run: |
@@ -38,7 +50,14 @@ jobs:
           python -c "import json,sys; d=json.load(open('dados/videos.json',encoding='utf-8')); sys.exit(0 if len(d['videos'])>100 else 1)"
       - name: Salvar se mudou
         run: |
+          # se só o horário da atualização mudou, volta o arquivo antigo (evita gravar toda hora à toa)
+          python -c "import json,shutil; c=lambda f:{k:v for k,v in json.load(open(f,encoding='utf-8')).items() if k!='atualizado'}; c('/tmp/antes.json')==c('dados/videos.json') and shutil.copy('/tmp/antes.json','dados/videos.json')"
           git config user.name "atualizador"
           git config user.email "actions@users.noreply.github.com"
           git add dados/videos.json
           git diff --cached --quiet || (git commit -m "Atualiza lista de vídeos" && git push)
+      - name: Avisar vídeo novo
+        env:
+          ONESIGNAL_APP_ID: "2ca45beb-167c-47e7-baa2-6c55843ecc17"
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: python ferramentas/avisar.py /tmp/ids_antes.txt dados/videos.json

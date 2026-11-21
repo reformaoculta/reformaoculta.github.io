@@ -124,7 +124,7 @@ def main():
         itens, shorts = antigo["videos"], antigo["shorts"]
         conhecidos = {v["id"] for v in itens + shorts}
         for vid, titulo, eh_short in reversed(do_feed):
-            if vid in conhecidos:
+            if vid in conhecidos or any(f in sem_acento(titulo) for f in FORA_DO_TEMA):
                 continue
             novo = {"id": vid, "t": titulo, "v": 0, "tipo": "short" if eh_short else "video", "o": -1,
                     "temas": temas_de(titulo)}

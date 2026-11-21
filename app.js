@@ -149,5 +149,37 @@
   $("#botaoInstalar").addEventListener("click", async () => { if (!pedido) return; pedido.prompt(); await pedido.userChoice; barra.hidden = true; });
   $("#fecharInstalar").addEventListener("click", () => { barra.hidden = true; try { localStorage.setItem("instalarFechado", "1"); } catch {} });
 
+  // avisos de vídeo novo (OneSignal, plano gratuito)
+  const ONESIGNAL_APP_ID = "2ca45beb-167c-47e7-baa2-6c55843ecc17";
+  const botaoAvisos = $("#botaoAvisos"), textoAvisos = $("#textoAvisos");
+  const avisosLigados = () => { botaoAvisos.textContent = "✓ Avisos ligados"; botaoAvisos.disabled = true;
+    textoAvisos.textContent = "Pronto! Você vai receber um aviso quando sair vídeo novo."; };
+  if (!("Notification" in window) || !("serviceWorker" in navigator) || ONESIGNAL_APP_ID.startsWith("__")) {
+    if (ehIOS && !instalado) {
+      textoAvisos.textContent = "No iPhone, instale o app primeiro (Compartilhar → \"Adicionar à Tela de Início\") e abra por lá para ligar os avisos.";
+      botaoAvisos.hidden = true;
+    } else $("#avisos").hidden = true;
+  } else {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    const s = document.createElement("script");
+    s.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"; s.defer = true; document.head.append(s);
+    OneSignalDeferred.push(async (OneSignal) => {
+      await OneSignal.init({ appId: ONESIGNAL_APP_ID, safari_web_id: "web.onesignal.auto.1b1338f0-ae7a-49c0-a5a1-0112be9b9bea",
+        serviceWorkerPath: "sw.js", serviceWorkerParam: { scope: "./" },
+        notifyButton: { enable: false }, allowLocalhostAsSecureOrigin: true });
+      if (OneSignal.Notifications.permission && OneSignal.User.PushSubscription.optedIn) avisosLigados();
+      OneSignal.User.PushSubscription.addEventListener("change", (e) => { if (e.current.optedIn) avisosLigados(); });
+    });
+    botaoAvisos.addEventListener("click", () => OneSignalDeferred.push(async (OneSignal) => {
+      if (Notification.permission === "denied") {
+        textoAvisos.textContent = "Os avisos estão bloqueados no navegador. Toque no cadeado ao lado do endereço e permita as notificações.";
+        return;
+      }
+      await OneSignal.Notifications.requestPermission();
+      if (OneSignal.Notifications.permission && !OneSignal.User.PushSubscription.optedIn) await OneSignal.User.PushSubscription.optIn();
+      if (OneSignal.Notifications.permission) avisosLigados();
+    }));
+  }
+
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 })();

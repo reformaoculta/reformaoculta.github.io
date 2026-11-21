@@ -82,3 +82,6 @@ main { max-width: 960px; margin: 0 auto; padding: 8px 16px 90px; }
 .barra-instalar span { flex: 1; font-size: .85rem; }
 .fechar { background: none; border: 0; font-size: 1.4rem; color: var(--suave); cursor: pointer; }
 .rodape { text-align: center; color: var(--suave); font-size: .8rem; padding: 20px 16px 100px; }
+.avisos { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.avisos .sub { margin-bottom: 0; }
+.avisos .botao[disabled] { background: var(--suave); cursor: default; }

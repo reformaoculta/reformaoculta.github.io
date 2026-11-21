@@ -1,5 +1,7 @@
+// Avisos de vídeo novo (OneSignal). Se falhar (sem internet), o app continua funcionando.
+try { importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js"); } catch (e) {}
 // Rede primeiro (sempre a versão mais nova do app e dos vídeos); sem internet, usa a cópia guardada.
-const CACHE = "reforma-v2";
+const CACHE = "reforma-v3";
 const BASE = ["./", "index.html", "estilo.css", "app.js", "manifest.webmanifest",
   "icones/icone-192.png", "icones/icone-512.png", "dados/videos.json"];
 
