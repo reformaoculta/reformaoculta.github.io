@@ -7,6 +7,7 @@ Precisa das variáveis ONESIGNAL_APP_ID e ONESIGNAL_API_KEY (segredo do GitHub).
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from datetime import date, timedelta
 
@@ -29,11 +30,23 @@ def enviar(titulo, texto, url, imagem):
     req = urllib.request.Request("https://api.onesignal.com/notifications?c=push",
                                  data=json.dumps(corpo).encode(), method="POST",
                                  headers={"Content-Type": "application/json", "Authorization": f"Key {CHAVE}"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        print("aviso enviado:", r.status, r.read()[:200])
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            print("aviso enviado:", r.status, r.read()[:300].decode(errors="replace"))
+    except urllib.error.HTTPError as e:
+        print("OneSignal recusou:", e.code, e.read()[:300].decode(errors="replace"))
+        if e.code in (401, 403):
+            sys.exit("chave ONESIGNAL_API_KEY inválida")
 
 
 def main():
+    if "--teste" in sys.argv:
+        if not (APP_ID and CHAVE):
+            sys.exit("falta ONESIGNAL_API_KEY")
+        v = json.load(open(sys.argv[2], encoding="utf-8"))["videos"][0]
+        enviar("Teste de aviso", v["t"], f"https://www.youtube.com/watch?v={v['id']}",
+               f"https://i.ytimg.com/vi/{v['id']}/hqdefault.jpg")
+        return
     antes = set(open(sys.argv[1], encoding="utf-8").read().split())
     d = json.load(open(sys.argv[2], encoding="utf-8"))
     if not antes:

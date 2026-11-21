@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: "15 * * * *"
   workflow_dispatch:
+    inputs:
+      teste:
+        description: "Mandar um aviso de teste com o vídeo mais recente"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -60,4 +65,4 @@ jobs:
         env:
           ONESIGNAL_APP_ID: "2ca45beb-167c-47e7-baa2-6c55843ecc17"
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
-        run: python ferramentas/avisar.py /tmp/ids_antes.txt dados/videos.json
+        run: python ferramentas/avisar.py /tmp/ids_antes.txt dados/videos.json ${{ inputs.teste && '--teste' || '' }}
