@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rádio Reforma Interna – Umbanda, espiritualidade e magia</title>
+<meta name="description" content="Aplicativo do canal Rádio Reforma Interna: todo dia um vídeo de Umbanda em destaque e sugestões sobre Exu e Pombogira, Pretos Velhos, Orixás, ervas, banhos, velas, magia e espiritualidade. Mais de 690 vídeos gratuitos.">
+<meta name="theme-color" content="#FE6704">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icones/icone-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Reforma Interna">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rádio Reforma Interna – Umbanda e espiritualidade">
+<meta property="og:description" content="Todo dia um vídeo de Umbanda em destaque e sugestões por tema.">
+<meta property="og:image" content="imagens/logo.webp">
+<link rel="stylesheet" href="estilo.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Rádio Reforma Interna",
+ "description":"Vídeos de Umbanda, espiritualidade, magia e bruxaria do canal Rádio Reforma Interna.",
+ "inLanguage":"pt-BR","sameAs":["https://www.youtube.com/@radioreformainterna"]}
+</script>
+</head>
+<body>
+<header class="topo">
+  <img src="icones/icone-192.png" alt="" class="logo" width="44" height="44">
+  <div class="marca">
+    <strong>Rádio Reforma Interna</strong>
+    <span>Umbanda • espiritualidade • magia</span>
+  </div>
+  <a class="botao-inscrever" href="https://www.youtube.com/channel/UCXF-4pobMGoKSlgOB3P28Zw?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se</a>
+</header>
+
+<main>
+  <section id="novo" class="aviso-novo" hidden></section>
+
+  <section class="bloco">
+    <h1 class="titulo-bloco">Vídeo do dia</h1>
+    <p class="data-hoje" id="dataHoje"></p>
+    <div id="videoDia"></div>
+  </section>
+
+  <section class="bloco">
+    <h2 class="titulo-bloco">Sugestões de hoje</h2>
+    <p class="sub">Uma escolha diferente por tema, todos os dias.</p>
+    <div id="sugestoes" class="grade"></div>
+  </section>
+
+  <section class="bloco" id="explorar">
+    <h2 class="titulo-bloco">Explorar por tema</h2>
+    <div class="busca"><input id="busca" type="search" placeholder="Buscar: Exu, banho, vela, Oxóssi..." aria-label="Buscar vídeos"></div>
+    <div id="temas" class="chips" role="tablist"></div>
+    <div id="lista" class="grade"></div>
+    <button id="maisVideos" class="botao-sec" hidden>Mostrar mais</button>
+  </section>
+
+  <section class="bloco">
+    <h2 class="titulo-bloco">Shorts</h2>
+    <div id="shorts" class="carrossel"></div>
+  </section>
+
+  <section class="bloco apoio" id="apoie">
+    <h2 class="titulo-bloco">Apoie o canal com PIX</h2>
+    <p class="sub">Qualquer valor ajuda a manter os vídeos gratuitos. Obrigado pelo seu axé!</p>
+    <div class="pix">
+      <img src="imagens/pix-qr.png" alt="QR Code PIX da Rádio Reforma Interna" width="180" height="180">
+      <div class="pix-texto">
+        <p>No celular, toque em <b>Copiar código PIX</b> e cole no app do seu banco, na opção <b>PIX Copia e Cola</b>.</p>
+        <button id="copiarPix" class="botao" data-pix="00020126460014BR.GOV.BCB.PIX0124reformainterna@gmail.com5204000053039865802BR5924JOAO HENRIQUE MARQUES DA6014RIO DE JANEIRO62070503***6304CCA2">Copiar código PIX</button>
+        <span id="pixCopiado" class="sub" hidden>Código copiado! Agora cole no app do banco.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco sobre">
+    <h2 class="titulo-bloco">Sobre o canal</h2>
+    <img class="logo-grande" src="imagens/logo.webp" alt="Logo da Rádio Reforma Interna" width="220" height="220">
+    <p>A <strong>Rádio Reforma Interna</strong> fala de Umbanda e espiritualidade com respeito e fundamento: mensagens dos guias, Exu e Pombogira, Pretos Velhos, Orixás, ervas, banhos, velas, magia e bruxaria. São mais de <strong id="totalVideos">690</strong> vídeos gratuitos e cerca de <strong>140 mil inscritos</strong>.</p>
+    <div class="acoes">
+      <a class="botao" href="https://www.youtube.com/channel/UCXF-4pobMGoKSlgOB3P28Zw?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se no YouTube</a>
+      <a class="botao-sec" href="https://www.youtube.com/channel/UCXF-4pobMGoKSlgOB3P28Zw/join" target="_blank" rel="noopener">Seja membro apoiador</a>
+    </div>
+  </section>
+</main>
+
+<div id="instalar" class="barra-instalar" hidden>
+  <img src="icones/icone-192.png" alt="" width="36" height="36">
+  <span id="textoInstalar">Instale o app e receba um vídeo novo todo dia.</span>
+  <button id="botaoInstalar" class="botao">Instalar</button>
+  <button id="fecharInstalar" class="fechar" aria-label="Fechar">×</button>
+</div>
+
+<footer class="rodape">Rádio Reforma Interna • conteúdo do canal no YouTube</footer>
+<script src="app.js"></script>
+</body>
+</html>
