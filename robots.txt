@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://reformaoculta.github.io/sitemap.xml
