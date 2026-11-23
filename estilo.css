@@ -107,3 +107,46 @@ main { max-width: 960px; margin: 0 auto; padding: 8px 16px 90px; }
   padding: 7px 14px; text-decoration: none; font-weight: 600; font-size: .9rem; }
 .chamada { text-align: center; background: var(--cartao); border: 1px solid var(--borda); border-radius: 14px; padding: 16px; }
 .voltar { display: flex; }
+/* Acenda uma vela */
+.vela-form { display: grid; gap: 6px; background: var(--cartao); border: 1px solid var(--borda); border-radius: 14px; padding: 14px; }
+.vela-form label { font-weight: 700; font-size: .9rem; margin-top: 6px; }
+.vela-form .opcional { font-weight: 400; color: var(--suave); }
+.vela-form select, .vela-form input, .vela-form textarea { width: 100%; padding: 10px 12px; border-radius: 10px;
+  border: 1px solid var(--borda); background: var(--fundo); color: var(--texto); font: inherit; font-size: 1rem; }
+.vela-form textarea { resize: vertical; }
+.vela-form .botao { justify-self: start; margin-top: 6px; }
+.aviso-privado { margin: 2px 0 0; font-size: .78rem; color: var(--suave); }
+.vela-acesa { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; background: #1b120c; color: #fbeee4;
+  border-radius: 16px; padding: 18px; }
+.vela-acesa .sub { color: #c9a891; }
+.vela-acesa .botao-sec { margin-top: 0; color: #fff; border-color: #fff8; }
+.vela-texto { flex: 1; min-width: 220px; }
+.vela-titulo { font-size: 1.15rem; font-weight: 800; color: var(--laranja); margin: 0 0 6px; }
+.vela-pedido { font-style: italic; margin: 0 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.vela-reza { margin: 0 0 12px; font-size: .95rem; }
+.vela-cena { position: relative; width: 120px; height: 220px; flex: none; margin: 0 auto; }
+.halo { position: absolute; left: 50%; top: 18px; width: 170px; height: 170px; transform: translateX(-50%);
+  border-radius: 50%; background: radial-gradient(circle, #ffb54a66 0%, #fe670422 45%, transparent 70%);
+  animation: pulsar 3s ease-in-out infinite; }
+.chama { position: absolute; left: 50%; top: 40px; width: 26px; height: 52px; margin-left: -13px;
+  background: radial-gradient(ellipse at 50% 75%, #fff7d6 0%, #ffd36b 30%, #ff9a1f 60%, #fe670400 80%);
+  border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%; transform-origin: 50% 90%;
+  animation: tremular 1.6s ease-in-out infinite alternate; filter: blur(.4px); }
+.chama-miolo { position: absolute; left: 50%; bottom: 6px; width: 8px; height: 16px; margin-left: -4px;
+  background: #6aa8ff99; border-radius: 50%; }
+.pavio { position: absolute; left: 50%; top: 88px; width: 3px; height: 10px; margin-left: -1.5px; background: #2b1a10; }
+.vela-corpo { position: absolute; left: 50%; top: 96px; width: 52px; height: 104px; margin-left: -26px;
+  border-radius: 6px 6px 4px 4px; background: #f4f0e8; box-shadow: inset -8px 0 12px #0003, inset 6px 0 10px #fff6; }
+.pires { position: absolute; left: 50%; top: 196px; width: 96px; height: 16px; margin-left: -48px; border-radius: 50%;
+  background: #c9a891; box-shadow: 0 6px 14px #0008; }
+@keyframes tremular { 0% { transform: scale(1, 1) rotate(-2deg); } 50% { transform: scale(.94, 1.06) rotate(1.5deg); }
+  100% { transform: scale(1.04, .96) rotate(-1deg); } }
+@keyframes pulsar { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .chama, .halo { animation: none; } }
+.minhas-velas { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.minhas-velas .titulo-minhas { width: 100%; font-weight: 700; font-size: .9rem; color: var(--suave); margin: 0; }
+.mini-vela { display: flex; align-items: center; gap: 8px; background: var(--cartao); border: 1px solid var(--borda);
+  border-radius: 999px; padding: 6px 12px 6px 8px; font-size: .85rem; cursor: pointer; color: var(--texto); }
+.mini-vela i { width: 10px; height: 22px; border-radius: 3px; position: relative; display: inline-block; border: 1px solid #0002; }
+.mini-vela i::before { content: ""; position: absolute; left: 1px; top: -9px; width: 8px; height: 10px;
+  border-radius: 50% 50% 40% 40%; background: #ffb54a; }

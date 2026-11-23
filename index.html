@@ -52,6 +52,41 @@
     <button id="botaoAvisos" class="botao">🔔 Receber avisos</button>
   </section>
 
+  <section class="bloco vela-bloco" id="vela">
+    <h2 class="titulo-bloco">🕯️ Acenda uma vela</h2>
+    <p class="sub">Escolha para quem é a sua vela, faça o seu pedido com fé e deixe a luz acesa por 7 dias.</p>
+    <form id="formVela" class="vela-form" autocomplete="off">
+      <label for="velaPara">Para quem é a vela?</label>
+      <select id="velaPara" required></select>
+      <label for="velaNome">Seu primeiro nome <span class="opcional">(opcional)</span></label>
+      <input id="velaNome" maxlength="30" placeholder="Ex.: Maria">
+      <label for="velaPedido">Seu pedido ou agradecimento</label>
+      <textarea id="velaPedido" maxlength="280" rows="3" required placeholder="Ex.: Peço proteção e caminhos abertos para a minha família."></textarea>
+      <p class="aviso-privado">Por segurança, não escreva telefone, endereço nem documentos.</p>
+      <button class="botao" type="submit">Acender a vela</button>
+    </form>
+    <div id="velaAcesa" class="vela-acesa" hidden>
+      <div class="vela-cena" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="chama"><div class="chama-miolo"></div></div>
+        <div class="pavio"></div>
+        <div class="vela-corpo" id="velaCorpo"></div>
+        <div class="pires"></div>
+      </div>
+      <div class="vela-texto">
+        <p class="vela-titulo" id="velaTitulo"></p>
+        <p class="vela-pedido" id="velaPedidoTexto"></p>
+        <p class="sub" id="velaPrazo"></p>
+        <p class="vela-reza" id="velaReza"></p>
+        <div class="acoes">
+          <a class="botao-sec" href="#apoie">Quer ajudar o canal? PIX opcional</a>
+          <button class="botao-sec" id="novaVela" type="button">Acender outra vela</button>
+        </div>
+      </div>
+    </div>
+    <div id="minhasVelas" class="minhas-velas" hidden></div>
+  </section>
+
   <section class="bloco">
     <h2 class="titulo-bloco">Sugestões de hoje</h2>
     <p class="sub">Uma escolha diferente por tema, todos os dias.</p>
@@ -112,5 +147,6 @@
 
 <footer class="rodape">Rádio Reforma Interna • conteúdo do canal no YouTube</footer>
 <script src="app.js"></script>
+<script src="vela.js"></script>
 </body>
 </html>
