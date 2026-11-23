@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rádio Reforma Interna – Umbanda, espiritualidade e magia</title>
-<meta name="description" content="Aplicativo do canal Rádio Reforma Interna: todo dia um vídeo de Umbanda em destaque e sugestões sobre Exu e Pombogira, Pretos Velhos, Orixás, ervas, banhos, velas, magia e espiritualidade. Mais de 690 vídeos gratuitos.">
+<title>Rádio Reforma Interna | App de Umbanda: vídeos, vela virtual e orações</title>
+<meta name="description" content="App gratuito do canal Rádio Reforma Interna, de Umbanda: vídeo do dia, vela virtual para o seu Orixá, Exu, Pombogira e Pretos Velhos, e mais de 690 vídeos sobre Orixás, ervas, banhos, velas, magia e espiritualidade.">
+<meta name="keywords" content="Rádio Reforma Interna, Radio Reforma Interna, Reforma Interna, Umbanda, app de Umbanda, vela virtual, acender vela online, Orixás, Exu, Pombogira, Pretos Velhos, Pai Joaquim, espiritualidade, magia, ervas, banhos">
 <meta name="theme-color" content="#FE6704">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icones/icone-32.png" sizes="32x32">
@@ -12,8 +13,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Reforma Interna">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Rádio Reforma Interna – Umbanda e espiritualidade">
-<meta property="og:description" content="Todo dia um vídeo de Umbanda em destaque e sugestões por tema.">
+<meta property="og:title" content="Rádio Reforma Interna – app de Umbanda e espiritualidade">
+<meta property="og:description" content="Todo dia um vídeo de Umbanda em destaque, vela virtual para o seu Orixá e vídeos por tema.">
 <meta property="og:image" content="https://reformaoculta.github.io/icones/icone-512.png">
 <meta property="og:url" content="https://reformaoculta.github.io/">
 <meta property="og:locale" content="pt_BR">
@@ -21,8 +22,12 @@
 <link rel="stylesheet" href="estilo.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Rádio Reforma Interna",
- "description":"Vídeos de Umbanda, espiritualidade, magia e bruxaria do canal Rádio Reforma Interna.",
- "inLanguage":"pt-BR","sameAs":["https://www.youtube.com/@radioreformainterna"]}
+ "alternateName":["Radio Reforma Interna","Reforma Interna","App Rádio Reforma Interna"],
+ "url":"https://reformaoculta.github.io/",
+ "description":"App de Umbanda do canal Rádio Reforma Interna: vídeos de Umbanda, vela virtual, espiritualidade, magia e bruxaria.",
+ "inLanguage":"pt-BR","sameAs":["https://www.youtube.com/@radioreformainterna"],
+ "publisher":{"@type":"Organization","name":"Rádio Reforma Interna","logo":"https://reformaoculta.github.io/icones/icone-512.png",
+  "sameAs":["https://www.youtube.com/@radioreformainterna"]}}
 </script>
 </head>
 <body>
@@ -38,8 +43,13 @@
 <main>
   <section id="novo" class="aviso-novo" hidden></section>
 
+  <section class="bloco apresentacao">
+    <h1 class="titulo-app">Rádio Reforma Interna: o app de Umbanda do canal</h1>
+    <p class="sub">Vídeos de Umbanda todos os dias, vela virtual para o seu Orixá e ensinamentos sobre Exu, Pombogira, Pretos Velhos e espiritualidade. Grátis.</p>
+  </section>
+
   <section class="bloco">
-    <h1 class="titulo-bloco">Vídeo do dia</h1>
+    <h2 class="titulo-bloco">Vídeo do dia</h2>
     <p class="data-hoje" id="dataHoje"></p>
     <div id="videoDia"></div>
   </section>
@@ -53,7 +63,7 @@
   </section>
 
   <section class="bloco vela-bloco" id="vela">
-    <h2 class="titulo-bloco">🕯️ Acenda uma vela</h2>
+    <h2 class="titulo-bloco">🕯️ Acenda uma vela virtual</h2>
     <p class="sub">Escolha para quem é a sua vela, faça o seu pedido com fé e deixe a luz acesa por 7 dias.</p>
     <form id="formVela" class="vela-form" autocomplete="off">
       <label for="velaPara">Para quem é a vela?</label>
