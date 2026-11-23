@@ -88,7 +88,7 @@ def carregar(nome):
 def main():
     # títulos vêm da lista em português (lang=pt); as visualizações da lista em inglês (lang=en),
     # porque o yt-dlp lê "7,9 mil" como 79.
-    vis = {e["id"]: e.get("view_count") for n in ("videos_en", "shorts_en") for e in carregar(n)}
+    vis = {e["id"]: e.get("view_count") for n in ("videos_en", "shorts_en", "streams_en") for e in carregar(n)}
     itens = []
     for ordem, e in enumerate(carregar("videos")):
         e["view_count"] = vis.get(e["id"], e.get("view_count"))
@@ -105,6 +105,14 @@ def main():
         titulo = limpar_titulo(e["title"])
         shorts.append({"id": e["id"], "t": titulo, "v": e.get("view_count") or 0, "tipo": "short", "o": ordem,
                        "temas": temas_de(titulo)})
+    lives = []
+    for ordem, e in enumerate(carregar("streams")):
+        e["view_count"] = vis.get(e["id"], e.get("view_count"))
+        if e.get("availability") == "subscriber_only" or e.get("live_status") in ("is_upcoming", "is_live")                 or not e.get("view_count"):
+            continue
+        titulo = limpar_titulo(re.sub(r"^\W*(ao vivo|live)\W*", "", e["title"], flags=re.I)) or limpar_titulo(e["title"])
+        lives.append({"id": e["id"], "t": titulo, "d": e.get("duration") or 0, "v": e.get("view_count") or 0,
+                      "tipo": "live", "o": ordem, "temas": temas_de(titulo)})
     # datas de publicação dos 15 mais recentes (feed público do canal)
     datas, do_feed = {}, []
     feed = PASTA / "feed.xml"
@@ -122,6 +130,7 @@ def main():
     if not itens and SAIDA.exists():
         antigo = json.loads(SAIDA.read_text(encoding="utf-8"))
         itens, shorts = antigo["videos"], antigo["shorts"]
+        lives = lives or antigo.get("lives", [])
         conhecidos = {v["id"] for v in itens + shorts}
         for vid, titulo, eh_short in reversed(do_feed):
             if vid in conhecidos or any(f in sem_acento(titulo) for f in FORA_DO_TEMA):
@@ -143,12 +152,13 @@ def main():
         "temas": NOMES,
         "videos": itens,   # ordem do canal: o primeiro é o mais recente
         "shorts": shorts,
+        "lives": lives,
     }
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
     SAIDA.write_text(json.dumps(dados, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     from collections import Counter
     c = Counter(t for v in itens for t in v["temas"])
-    print(f"{len(itens)} vídeos, {len(shorts)} shorts -> {SAIDA}")
+    print(f"{len(itens)} vídeos, {len(shorts)} shorts, {len(lives)} lives -> {SAIDA}")
     for k, n in c.most_common():
         print(f"  {NOMES[k]}: {n}")
 

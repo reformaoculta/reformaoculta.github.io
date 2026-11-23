@@ -40,7 +40,7 @@ jobs:
           HORA=$(date -u +%H)
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$HORA" = "09" ] || [ "$HORA" = "21" ]; then
             pip install -q -U yt-dlp
-            for t in videos shorts; do
+            for t in videos shorts streams; do
               yt-dlp --extractor-args "youtube:lang=pt" --flat-playlist --dump-single-json "$CANAL/$t" > .listas/$t.json || rm -f .listas/$t.json
               yt-dlp --extractor-args "youtube:lang=en" --flat-playlist --dump-single-json "$CANAL/$t" > .listas/${t}_en.json || rm -f .listas/${t}_en.json
             done

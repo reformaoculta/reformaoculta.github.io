@@ -1,4 +1,4 @@
-"""Gera as páginas por tema do app (Pretos Velhos, Exu, Pombogira, Erês) e o sitemap.xml.
+"""Gera as páginas por tema do app (Pretos Velhos, Exu, Pombogira, Erês, Orixás, Ervas, Mediunidade, Ciganos, Magia) e o sitemap.xml.
 
 Uso: python ferramentas/gerar_paginas.py   (lê dados/videos.json; escreve <tema>/index.html e sitemap.xml)
 Roda sozinho no GitHub depois de atualizar a lista de vídeos, então as páginas acompanham o canal.
@@ -88,6 +88,96 @@ TEMAS = [
             ("Quando se comemora os Erês?", "Em muitas casas, em setembro, perto do dia de Cosme e Damião (27 de setembro), com festa, doces e muita alegria."),
         ],
     },
+    {
+        "slug": "orixas",
+        "nome": "Orixás",
+        "titulo": "Orixás na Umbanda: Oxalá, Ogum, Oxóssi, Xangô, Iemanjá, Oxum e mais",
+        "descricao": "Conheça os Orixás na Umbanda: Oxalá, Ogum, Oxóssi, Xangô, Iansã, Iemanjá, Oxum, Nanã, Obaluaê e Ossaim. Ensinamentos, oferendas e fundamentos em vídeos gratuitos da Rádio Reforma Interna.",
+        "busca": r"orix|oxossi|ogum|xango|iemanja|yemanja|oxum|\bnana\b|obaluae|omulu|ossaim|ians[aã]|oxala|\bori\b|iyami",
+        "saudacao": "Saravá os Orixás! Axé!",
+        "texto": [
+            "Os <strong>Orixás</strong> são as forças sagradas da natureza que regem a Umbanda. Cada um representa um aspecto da criação, como as matas, os mares, as cachoeiras, os raios e os caminhos, e também qualidades que existem dentro de cada um de nós.",
+            "Na Umbanda, os Orixás orientam as linhas de trabalho dos guias. <strong>Oxalá</strong> traz a fé e a paz, <strong>Ogum</strong> a coragem e a abertura de caminhos, <strong>Oxóssi</strong> o conhecimento e a fartura, <strong>Xangô</strong> a justiça, <strong>Iansã</strong> o movimento, <strong>Iemanjá</strong> o acolhimento de mãe, <strong>Oxum</strong> o amor e a prosperidade, e <strong>Nanã</strong> e <strong>Obaluaê</strong> a sabedoria e a cura.",
+            "No canal, você encontra vídeos sobre os fundamentos dos Orixás, as ervas de cada um e a relação deles com o nosso dia a dia.",
+        ],
+        "perguntas": [
+            ("O que são os Orixás na Umbanda?", "São forças divinas ligadas à natureza, que regem as linhas de trabalho espiritual e representam qualidades como fé, coragem, justiça e amor."),
+            ("Quais são os principais Orixás da Umbanda?", "Os mais cultuados são Oxalá, Ogum, Oxóssi, Xangô, Iansã, Iemanjá, Oxum, Nanã e Obaluaê/Omulu. Cada casa pode ter suas particularidades."),
+            ("Como saber qual é o meu Orixá?", "Em geral, isso é confirmado dentro de um terreiro, com o dirigente espiritual, por meio do jogo ou da observação da mediunidade ao longo do tempo."),
+        ],
+    },
+    {
+        "slug": "ervas-banhos-velas",
+        "nome": "Ervas, banhos e velas",
+        "titulo": "Ervas, banhos, benzimentos e velas na Umbanda",
+        "descricao": "Ervas na Umbanda: banhos de descarrego e de energização, benzimentos, defumação, velas e simpatias, com os ensinamentos de Pai Joaquim e outros guias. Vídeos gratuitos da Rádio Reforma Interna.",
+        "busca": r"\bervas?\b|\bbanhos?\b|benz|defuma|simpatia|\bvelas?\b|incenso|sal grosso|oferenda|firmeza|macaia|fitoenerg",
+        "saudacao": "Ewê ó! Salve as folhas!",
+        "texto": [
+            "As <strong>ervas</strong> são a base de muitos trabalhos na Umbanda. Com elas se fazem os banhos, as defumações e os benzimentos, que limpam energias pesadas, fortalecem a proteção e trazem equilíbrio para o corpo e o espírito.",
+            "Os <strong>banhos de descarrego</strong> ajudam a tirar o que pesa. Os de <strong>energização</strong> renovam as forças. As <strong>velas</strong> e as <strong>firmezas</strong> ajudam a firmar o pensamento e a ligação com os guias. Tudo isso funciona com fé, intenção e respeito à natureza.",
+            "Esse é o tema mais procurado do canal. Os ensinamentos de <strong>Pai Joaquim de Angola</strong> sobre ervas, simpatias e benzimentos já passaram de um milhão de visualizações.",
+        ],
+        "perguntas": [
+            ("Para que serve o banho de ervas na Umbanda?", "Para limpar energias negativas (descarrego), renovar as forças (energização) e se preparar para os trabalhos espirituais."),
+            ("Posso fazer banho de ervas em casa?", "Sim, muitos banhos simples podem ser feitos em casa, com fé e as ervas certas. Na dúvida, peça orientação ao seu terreiro."),
+            ("Banho de ervas substitui o médico?", "Não. Os banhos e benzimentos são um apoio espiritual e não substituem o tratamento médico. Continue sempre o acompanhamento com profissionais de saúde."),
+        ],
+    },
+    {
+        "slug": "mediunidade",
+        "nome": "Mediunidade",
+        "titulo": "Mediunidade na Umbanda: desenvolvimento, incorporação e terreiro",
+        "descricao": "Mediunidade na Umbanda: como funciona a incorporação, o desenvolvimento mediúnico, a gira e a vida no terreiro, além de obsessão, carma e proteção espiritual. Vídeos gratuitos da Rádio Reforma Interna.",
+        "busca": r"medium|mediuni|incorpora|terreiro|(?<!pomb[ao] )\bgiras?\b|obsess|desencarn|\bcarma|\bkarma|\bmentor|pai de santo|mae de santo|desenvolvimento",
+        "saudacao": "Saravá Umbanda!",
+        "texto": [
+            "A <strong>mediunidade</strong> é a capacidade de sentir e se comunicar com o plano espiritual. Na Umbanda, ela é desenvolvida com disciplina, estudo e caridade, dentro de um terreiro e com a orientação de um dirigente.",
+            "A <strong>incorporação</strong> é a forma mais conhecida, mas existem muitas outras, como a intuição, a vidência e a audição. O desenvolvimento leva tempo e pede equilíbrio, humildade e reforma interna, que é o caminho que dá nome ao canal.",
+            "Nos vídeos, os guias falam sobre a vida dos médiuns, a gira, a obsessão, o carma e como cuidar da própria energia.",
+        ],
+        "perguntas": [
+            ("Como saber se tenho mediunidade?", "Sinais como intuições fortes, sensibilidade a ambientes e sonhos marcantes podem indicar mediunidade. O ideal é procurar um terreiro sério para orientação."),
+            ("O que é incorporação na Umbanda?", "É quando o médium empresta seu corpo e sua voz para que um guia espiritual se manifeste, sempre de forma consciente ou semiconsciente e com preparo."),
+            ("Médium precisa frequentar terreiro?", "Para desenvolver a mediunidade com segurança, sim: o terreiro oferece orientação, proteção e disciplina."),
+        ],
+    },
+    {
+        "slug": "ciganos",
+        "nome": "Povo Cigano",
+        "titulo": "Povo Cigano na Umbanda: ciganos, Santa Sara e oráculos",
+        "descricao": "O Povo Cigano na Umbanda: quem são os ciganos e ciganas, Santa Sara Kali, baralho cigano, tarô, búzios e previsões. Vídeos gratuitos da Rádio Reforma Interna.",
+        "busca": r"cigan|baralho|\btaro|buzios|santa sara|oracul",
+        "saudacao": "Optchá! Salve o Povo Cigano!",
+        "texto": [
+            "O <strong>Povo Cigano</strong> é uma linha de trabalho que chegou à Umbanda trazendo alegria, liberdade e muita sabedoria sobre a sorte, os caminhos e o amor. Os ciganos e as ciganas trabalham com cores, perfumes, moedas, cristais e com a leitura dos oráculos.",
+            "<strong>Santa Sara Kali</strong> é a padroeira desse povo, e muitos devotos a celebram em maio. Os ciganos ensinam a viver com leveza, a valorizar o presente e a não ter medo de mudar de rumo.",
+            "No canal, você encontra vídeos sobre o Povo Cigano, o baralho cigano, o tarô, os búzios e as previsões.",
+        ],
+        "perguntas": [
+            ("Quem é o Povo Cigano na Umbanda?", "É uma linha de espíritos ciganos que trabalha com alegria, prosperidade, amor e a leitura dos caminhos por meio dos oráculos."),
+            ("Quem é Santa Sara Kali?", "É a padroeira do povo cigano. Muitos devotos a celebram em 24 de maio."),
+            ("Qual a saudação ao Povo Cigano?", "Uma das saudações mais usadas é \"Optchá!\"."),
+        ],
+    },
+    {
+        "slug": "magia-bruxaria",
+        "nome": "Magia e bruxaria",
+        "titulo": "Magia e bruxaria: o que é, tradições e ensinamentos",
+        "descricao": "Magia e bruxaria com responsabilidade: o que é magia, as tradições pagãs, feitiços, rituais e a visão espiritual da Umbanda sobre o assunto. Vídeos gratuitos da Rádio Reforma Interna.",
+        "busca": r"magia|bruxa|feitic|goetia|cernunnos|pagao|pagan|wicca|\byule\b|bafome|\britua(l|is)\b|tecnomancia",
+        "saudacao": "",
+        "texto": [
+            "<strong>Magia</strong> é a arte de usar a energia, a intenção e os elementos da natureza para provocar mudanças. Ela existe em muitas tradições, das bruxas europeias às religiões de matriz africana, e sempre esteve ligada ao conhecimento das plantas, dos astros e dos ciclos da vida.",
+            "A <strong>bruxaria</strong> foi perseguida durante séculos, e por isso ainda é cercada de medo e preconceito. Na visão da Rádio Reforma Interna, toda magia traz responsabilidade: o que se planta, se colhe.",
+            "No canal, você encontra vídeos sobre as tradições pagãs, Cernunnos, a Goétia, feitiços, a Roda do Ano e uma aula de bruxaria com Maria Quitéria.",
+        ],
+        "perguntas": [
+            ("O que é magia?", "É o uso consciente da energia, da intenção e dos elementos da natureza para provocar mudanças, presente em várias tradições espirituais."),
+            ("Bruxaria é do mal?", "Não necessariamente. A bruxaria é um conjunto de práticas e tradições antigas. Como toda magia, o resultado depende da intenção de quem pratica."),
+            ("Umbanda é bruxaria?", "Não. A Umbanda é uma religião brasileira, com seus próprios fundamentos. Ela usa elementos mágicos, como ervas e velas, mas tem doutrina e culto próprios."),
+        ],
+    },
 ]
 
 
@@ -124,7 +214,7 @@ def cartao(v):
             f'</div></div>')
 
 
-def pagina(tema, videos, todos):
+def pagina(tema, videos, todos, lives=()):
     url = SITE + tema["slug"] + "/"
     busca = re.compile(tema["busca"])
     lista = [v for v in videos if busca.search(sem_acento(v["t"]))]
@@ -132,6 +222,8 @@ def pagina(tema, videos, todos):
     ids_top = {v["id"] for v in top}
     recentes = [v for v in sorted(lista, key=lambda v: v["o"]) if v["id"] not in ids_top][:6]
     total = len(lista)
+    lives_tema = sorted((v for v in lives if busca.search(sem_acento(v["t"])) and not SAUDE.search(v["t"])),
+                        key=lambda v: -v["v"])[:6]
     faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": p, "acceptedAnswer": {"@type": "Answer", "text": r}} for p, r in tema["perguntas"]]}
     colecao = {"@context": "https://schema.org", "@type": "CollectionPage", "name": tema["titulo"], "url": url,
@@ -145,6 +237,9 @@ def pagina(tema, videos, todos):
     texto = "".join(f"<p>{p}</p>" for p in tema["texto"])
     sec_recentes = (f'<section class="bloco"><h2 class="titulo-bloco">Mais recentes</h2><div class="grade">'
                     f'{"".join(cartao(v) for v in recentes)}</div></section>') if recentes else ""
+    sec_lives = (f'<section class="bloco"><h2 class="titulo-bloco">Lives sobre {e(tema["nome"])}</h2>'
+                 f'<p class="sub">Nas lives é o próprio apresentador do canal quem conversa com vocês sobre o tema.</p><div class="grade">'
+                 f'{"".join(cartao(v) for v in lives_tema)}</div></section>') if lives_tema else ""
     return f"""<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -176,7 +271,7 @@ def pagina(tema, videos, todos):
 <main class="tema-pagina">
   <nav class="trilha"><a href="../">Início</a> › {e(tema["nome"])}</nav>
   <h1 class="titulo-tema">{e(tema["titulo"])}</h1>
-  <p class="saudacao">{e(tema["saudacao"])}</p>
+  {f'<p class="saudacao">{e(tema["saudacao"])}</p>' if tema["saudacao"] else ""}
   <section class="texto-tema">{texto}</section>
 
   <section class="bloco">
@@ -185,6 +280,7 @@ def pagina(tema, videos, todos):
     <div class="grade">{"".join(cartao(v) for v in top)}</div>
   </section>
   {sec_recentes}
+  {sec_lives}
 
   <section class="bloco perguntas">
     <h2 class="titulo-bloco">Perguntas frequentes</h2>
@@ -226,7 +322,7 @@ def main():
     for t in TEMAS:
         pasta = RAIZ / t["slug"]
         pasta.mkdir(exist_ok=True)
-        (pasta / "index.html").write_text(pagina(t, d["videos"], TEMAS), encoding="utf-8")
+        (pasta / "index.html").write_text(pagina(t, d["videos"], TEMAS, d.get("lives", [])), encoding="utf-8")
         print("página:", t["slug"])
     urls = [SITE] + [SITE + t["slug"] + "/" for t in TEMAS]
     (RAIZ / "sitemap.xml").write_text(
